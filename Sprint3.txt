@@ -1,0 +1,88 @@
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textViewText"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Increase"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="86dp"
+        android:layout_height="45dp"
+        android:text="Decrease"
+        android:layout_below="@id/click"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+</RelativeLayout>
+
+
+
+
+
+
+_________________________________________________________________________________strings.xml
+
+<resources>
+    <string name="app_name">ClickerApp</string>
+    <string name="textViewText">Counter: %d</string>
+    <string name="buttonText">Click me</string>
+</resources>
+
+_________________________________________________________________________________
+
+MainActivity.kt
+
+package com.example.sprint2_3rd
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.view.View
+
+class MainActivity : AppCompatActivity() {
+
+    // Declare your variables with the correct data types
+    //Textview setup
+    private lateinit var textView: TextView
+    //Button setup
+    private lateinit var button: Button
+
+    //game var
+    private var count = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialize your variables correctly
+        textView = findViewById(R.id.textView)
+        button = findViewById(R.id.click)
+
+        button.setOnClickListener(View.OnClickListener {
+            count++
+            textView.text = "Clicked $count times"
+        })
+    }
+}
+
